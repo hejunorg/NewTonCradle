@@ -8,7 +8,7 @@
 
 #import "NewTonCradle.h"
 
-@interface NewTonCradle()
+@interface NewTonCradle()<CAAnimationDelegate>
 
 /** 宽度 */
 @property (nonatomic, assign) CGFloat width;
@@ -341,5 +341,33 @@
 	}
 	return _layerArray;
 }
+
+//自身的宽高
+CGFloat _height;
+CGFloat _width;
+
+//左边的竖线,左边的圆,左边的旋转路径
+CAShapeLayer * _leftLine;
+CAShapeLayer * _leftCircle;
+CGMutablePathRef  _leftPath;
+
+//右边的竖线,右边的圆,右边的旋转路径
+CAShapeLayer * _rightLine;
+CAShapeLayer * _rightCircle;
+CGMutablePathRef  _rightPath;
+
+//左边的动画
+CABasicAnimation * _leftBaseAnimation;
+CABasicAnimation * _rightBaseAnimation;
+
+//右边的动画
+CAKeyframeAnimation * _leftKeyframeAnimation;
+CAKeyframeAnimation * _rightKeyframeAnimation;
+
+//动画结束调用的block
+void(^animationFinishBlock)(CAAnimation * animation);
+
+//存放所有图层的数组
+NSMutableArray  * _array;
 
 @end
